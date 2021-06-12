@@ -10,6 +10,7 @@
   border: 2px solid black;
   text-align: center;
   background-color: white;
+  margin-top: 10px;
 }
 
 .notebook__list {
@@ -21,4 +22,9 @@
   font-size: 25px;
   text-decoration: none;
   color: black;
+}
+
+.notebookForm {
+  width: 40%;
+  background-color: #fffbe7;
 }
