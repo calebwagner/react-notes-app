@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { NotebookContext } from "./NotebookProvider";
 import { Link } from "react-router-dom";
+import "./Notebook.css";
 
 export const NotebookList = () => {
   const { notebooks, getNotebooks } = useContext(NotebookContext);
@@ -9,17 +10,24 @@ export const NotebookList = () => {
     getNotebooks();
   }, []);
 
+  const currentUserId = parseInt(localStorage.getItem("wwi__user"));
+
+  const userNotebooks = notebooks.filter((notebook) => {
+    return currentUserId === notebook.userId;
+  });
+
   return (
     <>
       <section className="notebook__list">
-        {notebooks.map((notebook) => (
+        {userNotebooks.map((notebook) => (
           <div
             key={notebook.id}
-            className="notebook"
+            className="notebooks"
             id={`notebook--${notebook.id}`}
           >
-            <Link key={notebook.id}>{notebook.title}</Link>
-            {notebook.title}
+            <Link className="notebook" key={notebook.id} to={`/notes`}>
+              {notebook.title}
+            </Link>
           </div>
         ))}
       </section>
