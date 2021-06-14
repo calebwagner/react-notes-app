@@ -30,6 +30,9 @@ export const NotebookList = () => {
             <Link className="notebook" key={notebook.id} to={`/notes`}>
               {notebook.title}
             </Link>
+            <button onClick={() => history.push(`/edit/${notebook.id}`)}>
+              Edit
+            </button>
           </div>
         ))}
       </section>

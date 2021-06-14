@@ -5,6 +5,7 @@ import { NotebookList } from "./notebooks/NotebookList";
 import { NotesProvider } from "./notes/NotesProvider";
 import { NotesList } from "./notes/NotesList";
 import { NotebookForm } from "./notebooks/NotebookForm";
+import { NotebookEdit } from "./notebooks/NotebookEdit";
 
 export const ApplicationViews = () => {
   return (
@@ -13,6 +14,9 @@ export const ApplicationViews = () => {
         <NotesProvider>
           <Route path="/create">
             <NotebookForm />
+          </Route>
+          <Route path="/edit/:notebookId(\d+)">
+            <NotebookEdit />
           </Route>
           <Route exact path="/">
             <NotebookList />

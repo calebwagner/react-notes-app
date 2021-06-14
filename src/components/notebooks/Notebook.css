@@ -11,12 +11,25 @@
   text-align: center;
   background-color: white;
   margin-top: 10px;
+  box-shadow: 10px 20px 10px #f3bfbf;
+}
+
+.notebooks:hover {
+  box-shadow: 10px 10px 10px black;
+  transform: translateY(5px);
+}
+
+.notebooks:hover,
+.notebooks:focus,
+.notebooks:active {
+  transform: scale(1.1);
 }
 
 .notebook__list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .notebook {
