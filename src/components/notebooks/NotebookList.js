@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { NotebookContext } from "./NotebookProvider";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Notebook.css";
 
 export const NotebookList = () => {
   const { notebooks, getNotebooks } = useContext(NotebookContext);
+  const history = useHistory();
 
   useEffect(() => {
     getNotebooks();
@@ -18,6 +19,7 @@ export const NotebookList = () => {
 
   return (
     <>
+      <button onClick={() => history.push("/create")}>Create Notebook</button>
       <section className="notebook__list">
         {userNotebooks.map((notebook) => (
           <div
