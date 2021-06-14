@@ -11,7 +11,7 @@ export const ApplicationViews = () => {
     <>
       <NotebookProvider>
         <NotesProvider>
-          <Route path="/">
+          <Route path="/create">
             <NotebookForm />
           </Route>
           <Route exact path="/">
