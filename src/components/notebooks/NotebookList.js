@@ -19,7 +19,7 @@ export const NotebookList = () => {
 
   return (
     <>
-      <button onClick={() => history.push("/create")}>Make Reservation</button>
+      <button onClick={() => history.push("/create")}>Create Notebook</button>
       <section className="notebook__list">
         {userNotebooks.map((notebook) => (
           <div
