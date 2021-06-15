@@ -12,6 +12,16 @@ export const NavBar = (props) => {
             Home
           </Link>
         </li>
+        <li>
+          <Link
+            className="navbar__link"
+            onClick={(event) => {
+              localStorage.removeItem("wwi__user");
+            }}
+          >
+            Logout
+          </Link>
+        </li>
       </ul>
     </>
   );
