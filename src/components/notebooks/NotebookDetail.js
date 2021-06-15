@@ -1,22 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NotebookContext } from "./NotebookProvider";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
+import "./Notebook.css";
 
 export const NotebookDetail = ({ notebook }) => {
-  const { getNotebooksById, deleteNotebook } = useContext(NotebookContext);
+  const { getNotebookById, deleteNotebook } = useContext(NotebookContext);
   const [notebookVar, setNotebook] = useState({});
   const { notebookId } = useParams();
-  const history = useHistory();
 
   useEffect(() => {
     if (notebookId) {
-      getNotebooksById(parseInt(notebookId)).then((notebookObj) => {
+      getNotebookById(parseInt(notebookId)).then((notebookObj) => {
         setNotebook(notebookObj);
       });
     } else {
       setNotebook(notebook);
     }
   }, [notebookId]);
+
+  const history = useHistory();
 
   const deleteANotebook = () => {
     deleteNotebook(notebookVar.id).then(() => {
@@ -25,8 +27,12 @@ export const NotebookDetail = ({ notebook }) => {
   };
 
   return (
-    <section className="notebook">
-      <h3 className="note__title">{notebookVar.title}</h3>
+    <section className="notebooks">
+      <h3>{notebookVar.title}</h3>
+      <Link key={notebook.id} to={`/detail/${notebook.id}`}>
+        <button>View</button>
+      </Link>
+      <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
       <button onDoubleClick={deleteANotebook}>Delete</button>
     </section>
   );
