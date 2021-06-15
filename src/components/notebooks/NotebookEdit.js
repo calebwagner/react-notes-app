@@ -21,26 +21,9 @@ export const NotebookEdit = () => {
 
   const history = useHistory();
 
-  /*
-  Reach out to the world and get customers state
-  and locations state on initialization.
-  */
-  //   useEffect(() => {
-  //     getNotebooks();
-  //   }, []);
-
-  //   useEffect(() => {
-  //     getNotebooksById().then(setNotebook());
-  //   }, []);
-
   useEffect(() => {
     getNotebooksById(notebookId).then(setNotebook);
   }, []);
-
-  //   useEffect(() => {
-  //     const thisNotebook = notebooks.find((n) => n.id === notebookId);
-  //     setNotebook(thisNotebook);
-  //   }, [notebookId]);
 
   const handleControlledInputChange = (event) => {
     const newNotebook = { ...notebook };
@@ -48,28 +31,11 @@ export const NotebookEdit = () => {
     setNotebook(newNotebook);
   };
 
-  //   const handleClickEditNotebook = (event) => {
-  //     event.preventDefault(); //Prevents the browser from submitting the form
-
-  //     const notebookTitle = parseInt(notebook.title);
-
-  //     if (notebookTitle === 0) {
-  //       window.alert("Please type a title");
-  //     } else {
-  //       const newNotebook = {
-  //         title: notebook.title,
-  //         userId: currentUserId,
-  //         timestamp: Date.now(),
-  //       };
-  //       editNotebook(newNotebook).then(() => history.push("/"));
-  //     }
-  //   };
-
-  // TODO: ... editing ...
   const handleClickEditNotebook = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
     const newNotebook = {
+      id: parseInt(notebookId),
       title: notebook.title,
       userId: currentUserId,
       timestamp: Date.now(),

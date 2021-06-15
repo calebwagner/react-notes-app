@@ -19,23 +19,15 @@ export const ApplicationViews = () => {
           <Route path="/create">
             <NotebookForm />
           </Route>
-          <Route path="/edit/:notebookId(\d+)">
+          <Route path="/edit/:notebookId">
             <NotebookEdit />
           </Route>
-          <Route exact path="/detail/:notebookId(\d+)">
+          <Route exact path="/detail/:notebookId">
             <NotebookDetail />
             <NotesList />
           </Route>
         </NotesProvider>
       </NotebookProvider>
-
-      {/* <NotesProvider>
-        <NotebookProvider>
-          <Route exact path="/notes">
-            <NotesList />
-          </Route>
-        </NotebookProvider>
-      </NotesProvider> */}
     </>
   );
 };
