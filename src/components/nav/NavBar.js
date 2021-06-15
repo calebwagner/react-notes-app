@@ -12,9 +12,14 @@ export const NavBar = (props) => {
             Home
           </Link>
         </li>
-        <li className="navbar__item">
-          <Link className="navbar__link" to="/">
-            NoteBooks
+        <li>
+          <Link
+            className="navbar__link"
+            onClick={(event) => {
+              localStorage.removeItem("wwi__user");
+            }}
+          >
+            Logout
           </Link>
         </li>
       </ul>

@@ -6,33 +6,30 @@ import { NotesProvider } from "./notes/NotesProvider";
 import { NotesList } from "./notes/NotesList";
 import { NotebookForm } from "./notebooks/NotebookForm";
 import { NotebookEdit } from "./notebooks/NotebookEdit";
-import { NotebookDetail } from "./notebooks/NotebookDetail";
+import { NotebookView } from "./notebooks/NotebookView";
+import { NotebookSearch } from "./notebooks/NotebookSearch";
 
 export const ApplicationViews = () => {
   return (
     <>
       <NotebookProvider>
         <NotesProvider>
+          <Route exact path="/">
+            <NotebookSearch />
+            <NotebookList />
+          </Route>
           <Route path="/create">
             <NotebookForm />
           </Route>
-          <Route path="/edit/:notebookId(\d+)">
+          <Route path="/edit/:notebookId">
             <NotebookEdit />
           </Route>
-          <Route exact path="/detail/:notebookId(\d+)">
-            <NotebookDetail />
-          </Route>
-          <Route exact path="/">
-            <NotebookList />
+          <Route exact path="/detail/:notebookId">
+            <NotebookView />
+            <NotesList />
           </Route>
         </NotesProvider>
       </NotebookProvider>
-
-      <NotesProvider>
-        <Route exact path="/notes">
-          <NotesList />
-        </Route>
-      </NotesProvider>
     </>
   );
 };

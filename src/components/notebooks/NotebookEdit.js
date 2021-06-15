@@ -3,8 +3,12 @@ import { NotebookContext } from "./NotebookProvider";
 import { useHistory, useParams } from "react-router-dom";
 
 export const NotebookEdit = () => {
-  const { editNotebook, getNotebooksById } = useContext(NotebookContext);
-  const { notebooks, getNotebooks } = useContext(NotebookContext);
+  const {
+    notebooks,
+    getNotebooks,
+    editNotebook,
+    getNotebooksById,
+  } = useContext(NotebookContext);
   const { notebookId } = useParams();
 
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
@@ -17,16 +21,8 @@ export const NotebookEdit = () => {
 
   const history = useHistory();
 
-  /*
-  Reach out to the world and get customers state
-  and locations state on initialization.
-  */
   useEffect(() => {
-    getNotebooks();
-  }, []);
-
-  useEffect(() => {
-    getNotebooksById().then(setNotebook());
+    getNotebooksById(notebookId).then(setNotebook);
   }, []);
 
   const handleControlledInputChange = (event) => {
@@ -35,28 +31,11 @@ export const NotebookEdit = () => {
     setNotebook(newNotebook);
   };
 
-  //   const handleClickEditNotebook = (event) => {
-  //     event.preventDefault(); //Prevents the browser from submitting the form
-
-  //     const notebookTitle = parseInt(notebook.title);
-
-  //     if (notebookTitle === 0) {
-  //       window.alert("Please type a title");
-  //     } else {
-  //       const newNotebook = {
-  //         title: notebook.title,
-  //         userId: currentUserId,
-  //         timestamp: Date.now(),
-  //       };
-  //       editNotebook(newNotebook).then(() => history.push("/"));
-  //     }
-  //   };
-
-  // TODO: ... editing ...
   const handleClickEditNotebook = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
     const newNotebook = {
+      id: parseInt(notebookId),
       title: notebook.title,
       userId: currentUserId,
       timestamp: Date.now(),
@@ -77,7 +56,7 @@ export const NotebookEdit = () => {
             autoFocus
             className="form-control"
             placeholder="type title here ..."
-            value={notebook.title}
+            defaultValue={notebook.title}
             onChange={handleControlledInputChange}
           />
         </div>

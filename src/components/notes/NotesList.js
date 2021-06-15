@@ -1,25 +1,36 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NotesContext } from "./NotesProvider";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Notes.css";
 import { NotebookContext } from "../notebooks/NotebookProvider";
 
 export const NotesList = () => {
   const { notes, getNotes } = useContext(NotesContext);
-  //   const { getNotebooks } = useContext(NoteBookContext);
+  const [note, setNote] = useState({ notebook: {} });
+  const { notebooks, getNotebooks } = useContext(NotebookContext);
+  const { notebookId } = useParams();
+  const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
     getNotes();
   }, []);
 
-  //   const filteredNotes = notes.filter((note) => {
-  //     return notebook.id === note.notebookId;
-  //   });
+  useEffect(() => {
+    getNotebooks();
+  }, []);
+
+  // TODO:
+  useEffect(() => {
+    const filtered = notes.filter((note) => {
+      return parseInt(notebookId) === note.notebookId;
+    });
+    setFilteredNotes(filtered);
+  }, [notes]);
 
   return (
     <>
       <section className="note__list">
-        {notes.map((note) => (
+        {filteredNotes.map((note) => (
           <div key={note.id} className="notes" id={`note--${note.id}`}>
             <Link className="note" key={note.id}>
               {note.title}
