@@ -47,7 +47,11 @@ export const NotebookList = () => {
             className="notebooks"
             id={`notebook--${notebook.id}`}
           >
-            <Link className="notebook" key={notebook.id} to={`/notes`}>
+            <Link
+              className="notebook"
+              key={notebook.id}
+              to={`/detail/${notebook.id}`}
+            >
               {notebook.title}
             </Link>
             <button onClick={() => history.push(`/edit/${notebook.id}`)}>

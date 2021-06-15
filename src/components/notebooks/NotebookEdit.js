@@ -3,8 +3,12 @@ import { NotebookContext } from "./NotebookProvider";
 import { useHistory, useParams } from "react-router-dom";
 
 export const NotebookEdit = () => {
-  const { editNotebook, getNotebooksById } = useContext(NotebookContext);
-  const { notebooks, getNotebooks } = useContext(NotebookContext);
+  const {
+    notebooks,
+    getNotebooks,
+    editNotebook,
+    getNotebooksById,
+  } = useContext(NotebookContext);
   const { notebookId } = useParams();
 
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
@@ -21,13 +25,22 @@ export const NotebookEdit = () => {
   Reach out to the world and get customers state
   and locations state on initialization.
   */
-  useEffect(() => {
-    getNotebooks();
-  }, []);
+  //   useEffect(() => {
+  //     getNotebooks();
+  //   }, []);
+
+  //   useEffect(() => {
+  //     getNotebooksById().then(setNotebook());
+  //   }, []);
 
   useEffect(() => {
-    getNotebooksById().then(setNotebook());
+    getNotebooksById(notebookId).then(setNotebook);
   }, []);
+
+  //   useEffect(() => {
+  //     const thisNotebook = notebooks.find((n) => n.id === notebookId);
+  //     setNotebook(thisNotebook);
+  //   }, [notebookId]);
 
   const handleControlledInputChange = (event) => {
     const newNotebook = { ...notebook };
@@ -77,7 +90,7 @@ export const NotebookEdit = () => {
             autoFocus
             className="form-control"
             placeholder="type title here ..."
-            value={notebook.title}
+            defaultValue={notebook.title}
             onChange={handleControlledInputChange}
           />
         </div>

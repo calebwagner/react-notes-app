@@ -13,6 +13,9 @@ export const ApplicationViews = () => {
     <>
       <NotebookProvider>
         <NotesProvider>
+          <Route exact path="/">
+            <NotebookList />
+          </Route>
           <Route path="/create">
             <NotebookForm />
           </Route>
@@ -21,18 +24,18 @@ export const ApplicationViews = () => {
           </Route>
           <Route exact path="/detail/:notebookId(\d+)">
             <NotebookDetail />
-          </Route>
-          <Route exact path="/">
-            <NotebookList />
+            <NotesList />
           </Route>
         </NotesProvider>
       </NotebookProvider>
 
-      <NotesProvider>
-        <Route exact path="/notes">
-          <NotesList />
-        </Route>
-      </NotesProvider>
+      {/* <NotesProvider>
+        <NotebookProvider>
+          <Route exact path="/notes">
+            <NotesList />
+          </Route>
+        </NotebookProvider>
+      </NotesProvider> */}
     </>
   );
 };
