@@ -3,14 +3,17 @@ import { NotebookContext } from "./NotebookProvider";
 import { Link, useHistory, useParams } from "react-router-dom";
 import "./Notebook.css";
 
-export const NotebookList = ({ notebook }) => {
+export const NotebookList = () => {
   const {
     notebooks,
     getNotebooksById,
     getNotebooks,
     deleteNotebook,
+    searchTerms,
   } = useContext(NotebookContext);
-  const [notebookVar, setNotebook] = useState({});
+  const [filteredNotebooks, setFiltered] = useState([]);
+
+  const [notebook, setNotebook] = useState({});
   const { notebookId } = useParams();
 
   const history = useHistory();
@@ -20,17 +23,35 @@ export const NotebookList = ({ notebook }) => {
   }, []);
 
   useEffect(() => {
-    if (notebookId) {
-      getNotebooksById(parseInt(notebookId)).then((notebookObj) => {
-        setNotebook(notebookObj);
-      });
-    } else {
-      setNotebook(notebook);
-    }
+    getNotebooksById(parseInt(notebookId)).then((notebookObj) => {
+      setNotebook(notebookObj);
+    });
   }, [notebookId]);
 
+  useEffect(() => {
+    if (searchTerms !== "") {
+      const notebookFilter = notebooks.filter((notebook) =>
+        notebook.title.toLowerCase().includes(searchTerms.toLowerCase())
+      );
+      setFiltered(notebookFilter);
+    } else {
+      // If the search field is blank, display all animals
+      setFiltered(notebooks);
+    }
+  }, [searchTerms, notebooks]);
+
+  // useEffect(() => {
+  //   if (notebookId) {
+  //     getNotebooksById(parseInt(notebookId)).then((notebookObj) => {
+  //       setNotebook(notebookObj);
+  //     });
+  //   } else {
+  //     setNotebook(notebook);
+  //   }
+  // }, [notebookId]);
+
   const deleteANotebook = () => {
-    deleteNotebook(notebookVar).then(() => {
+    deleteNotebook(notebook.id).then(() => {
       history.push("/");
     });
   };
@@ -60,7 +81,7 @@ export const NotebookList = ({ notebook }) => {
             <Link key={notebook.id} to={`/detail/${notebook.id}`}>
               <button>View</button>
             </Link>
-            <button onClick={deleteANotebook}>Delete</button>
+            <button onDoubleClick={deleteANotebook}>Delete</button>
           </div>
         ))}
       </section>

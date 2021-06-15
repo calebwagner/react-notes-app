@@ -27,7 +27,7 @@ export const NotebookDetail = ({ notebook }) => {
   return (
     <section className="notebook">
       <h3 className="note__title">{notebookVar.title}</h3>
-      <button onClick={deleteANotebook}>Delete</button>
+      <button onDoubleClick={deleteANotebook}>Delete</button>
     </section>
   );
 };
