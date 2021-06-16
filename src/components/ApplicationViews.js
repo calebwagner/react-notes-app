@@ -8,6 +8,7 @@ import { NotebookForm } from "./notebooks/NotebookForm";
 import { NotebookEdit } from "./notebooks/NotebookEdit";
 import { NotebookView } from "./notebooks/NotebookView";
 import { NotebookSearch } from "./notebooks/NotebookSearch";
+import { NoteSearch } from "./notes/NoteSearch";
 
 export const ApplicationViews = () => {
   return (
@@ -25,6 +26,7 @@ export const ApplicationViews = () => {
             <NotebookEdit />
           </Route>
           <Route exact path="/detail/:notebookId">
+            <NoteSearch />
             <NotebookView />
             <NotesList />
           </Route>
