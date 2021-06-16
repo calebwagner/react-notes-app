@@ -27,7 +27,7 @@ export const ApplicationViews = () => {
           </Route>
           <Route exact path="/detail/:notebookId">
             <NoteSearch />
-            <NotebookView />
+            {/* <NotebookView /> */}
             <NotesList />
           </Route>
         </NotesProvider>
