@@ -1,22 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { NotesContext } from "./NotesProvider";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const NotesForm = () => {
-  const { addNote, getNotes } = useContext(NotesContext);
+  const { addNote } = useContext(NotesContext);
+  const { notebookId } = useParams();
 
   const [note, setNote] = useState({
     title: "",
-    notebookId: 2,
+    notebookId: parseInt(notebookId),
     description: "",
     timestamp: Date.now(),
   });
 
   const history = useHistory();
-
-  useEffect(() => {
-    getNotes().then();
-  }, []);
 
   const handleControlledInputChange = (event) => {
     const newNote = { ...note };
@@ -27,18 +24,12 @@ export const NotesForm = () => {
   const handleClickSaveNote = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
-    const noteTitle = parseInt(note.title);
-    const noteDescription = parseInt(note.description);
-    if (noteTitle.length || noteDescription.length === 0) {
+    const noteTitle = note.title;
+    const noteDescription = note.description;
+    if (noteTitle.length === 0 || noteDescription.length === 0) {
       window.alert("Please fill out note form");
     } else {
-      const newNote = {
-        title: note.title,
-        notebookId: 2,
-        description: note.description,
-        timestamp: Date.now(),
-      };
-      addNote(newNote).then(() => history.push(`/detail/:notebookId`));
+      addNote(note).then(() => history.push(`/detail/${notebookId}`));
     }
   };
 

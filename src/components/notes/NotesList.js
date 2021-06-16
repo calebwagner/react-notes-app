@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NotesContext } from "./NotesProvider";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { NoteDetail } from "./NoteDetail";
 import "./Notes.css";
 
@@ -8,6 +8,7 @@ export const NotesList = () => {
   const { notes, getNotes, searchTerms } = useContext(NotesContext);
   const [filteredNotes, setFiltered] = useState([]);
   const history = useHistory();
+  const { notebookId } = useParams();
 
   useEffect(() => {
     getNotes();
@@ -18,16 +19,22 @@ export const NotesList = () => {
       const notesFiltered = notes.filter((note) =>
         note.title.toLowerCase().includes(searchTerms.toLowerCase())
       );
-      setFiltered(notesFiltered);
+      const filteredByNotebook = notesFiltered.filter((note) => {
+        return parseInt(notebookId) === note.notebookId;
+      });
+      setFiltered(filteredByNotebook);
     } else {
-      setFiltered(notes);
+      const filteredByNotebook = notes.filter((note) => {
+        return parseInt(notebookId) === note.notebookId;
+      });
+      setFiltered(filteredByNotebook);
     }
   }, [searchTerms, notes]);
 
   return (
     <>
       <h1>Notes:</h1>
-      <button onClick={() => history.push(`/detail/:notebookId/create`)}>
+      <button onClick={() => history.push(`/detail/create/${notebookId}`)}>
         Create Note
       </button>
       <div>

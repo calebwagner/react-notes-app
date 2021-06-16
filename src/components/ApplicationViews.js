@@ -31,7 +31,7 @@ export const ApplicationViews = () => {
             {/* <NotebookView /> */}
             <NotesList />
           </Route>
-          <Route path="/detail/:notebookId/create">
+          <Route path="/detail/create/:notebookId">
             <NotesForm />
           </Route>
         </NotesProvider>
