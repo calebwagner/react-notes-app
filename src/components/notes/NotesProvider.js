@@ -39,7 +39,7 @@ export const NotesProvider = (props) => {
   };
 
   const deleteNote = (noteId) => {
-    return fetch(`http://localhost:8088/notebooks/${noteId}`, {
+    return fetch(`http://localhost:8088/notes/${noteId}`, {
       method: "DELETE",
     }).then(getNotes);
   };

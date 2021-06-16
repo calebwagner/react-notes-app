@@ -22,7 +22,7 @@ export const NoteDetail = ({ note }) => {
 
   const deleteANote = () => {
     deleteNote(noteVar.id).then(() => {
-      history.push(`/`);
+      history.push(`/detail/${note.id}`);
     });
   };
 
