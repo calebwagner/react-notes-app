@@ -3,8 +3,7 @@ import { NotebookContext } from "./NotebookProvider";
 import { useHistory } from "react-router-dom";
 
 export const NotebookForm = () => {
-  const { addNotebook } = useContext(NotebookContext);
-  const { notebooks, getNotebooks } = useContext(NotebookContext);
+  const { addNotebook, getNotebooks } = useContext(NotebookContext);
 
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
 
@@ -35,7 +34,7 @@ export const NotebookForm = () => {
 
     const notebookTitle = parseInt(notebook.title);
 
-    if (notebookTitle === 0) {
+    if (notebookTitle.length === 0) {
       window.alert("Please select a type a title");
     } else {
       const newNotebook = {

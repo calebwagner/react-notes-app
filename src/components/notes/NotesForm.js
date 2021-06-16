@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { NotesContext } from "./NotesProvider";
 import { useHistory } from "react-router-dom";
 
-export const NotebookEdit = () => {
+export const NotesForm = () => {
   const { addNote, getNotes } = useContext(NotesContext);
 
   const [note, setNote] = useState({
     title: "",
-    notebookId: 1,
+    notebookId: 2,
+    description: "",
     timestamp: Date.now(),
   });
 
@@ -28,12 +29,12 @@ export const NotebookEdit = () => {
 
     const noteTitle = parseInt(note.title);
     const noteDescription = parseInt(note.description);
-    if (noteTitle || noteDescription === 0) {
+    if (noteTitle.length || noteDescription.length === 0) {
       window.alert("Please fill out note form");
     } else {
       const newNote = {
         title: note.title,
-        notebookId: 1,
+        notebookId: 2,
         description: note.description,
         timestamp: Date.now(),
       };
@@ -54,27 +55,23 @@ export const NotebookEdit = () => {
             autoFocus
             className="form-control"
             placeholder="type title here ..."
-            defaultValue={note.title}
+            value={note.title}
             onChange={handleControlledInputChange}
           />
         </div>
       </fieldset>
-      <textarea>
-        <div className="form-group">
-          <label htmlFor="description">description:</label>
-          <input
-            type="text"
-            id="description"
-            required
-            autoFocus
-            className="form-control"
-            placeholder="type description here ..."
-            defaultValue={note.title}
-            onChange={handleControlledInputChange}
-          />
-        </div>
-      </textarea>
-
+      <textarea
+        type="text"
+        id="description"
+        name="description"
+        className="form-control"
+        cols={10}
+        rows={10}
+        required
+        value={note.description}
+        onChange={handleControlledInputChange}
+      />
+      ;
       <button className="btn btn-primary" onClick={handleClickSaveNote}>
         Save Note
       </button>

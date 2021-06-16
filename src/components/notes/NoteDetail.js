@@ -28,8 +28,8 @@ export const NoteDetail = ({ note }) => {
 
   return (
     <section className="notes">
-      <button onClick={() => history.push(`/edit/${note.id}`)}>Edit</button>
-      <button onDoubleClick={deleteANote}>Delete</button>
+      {/* <button onClick={() => history.push(`/edit/${note.id}`)}>Edit</button>
+      <button onDoubleClick={deleteANote}>Delete</button> */}
       <h3>{noteVar.title}</h3>
       <h5>{noteVar.description}</h5>
     </section>

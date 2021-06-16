@@ -7,6 +7,7 @@ import "./Notes.css";
 export const NotesList = () => {
   const { notes, getNotes, searchTerms } = useContext(NotesContext);
   const [filteredNotes, setFiltered] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     getNotes();
@@ -26,9 +27,9 @@ export const NotesList = () => {
   return (
     <>
       <h1>Notes:</h1>
-      {/* <button onClick={() => history.push(`/detail/:notebookId/create`)}>
+      <button onClick={() => history.push(`/detail/:notebookId/create`)}>
         Create Note
-      </button> */}
+      </button>
       <div>
         {filteredNotes.map((note) => {
           return <NoteDetail key={note.id} note={note} />;

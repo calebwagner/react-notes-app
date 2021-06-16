@@ -9,6 +9,7 @@ import { NotebookEdit } from "./notebooks/NotebookEdit";
 import { NotebookView } from "./notebooks/NotebookView";
 import { NotebookSearch } from "./notebooks/NotebookSearch";
 import { NoteSearch } from "./notes/NoteSearch";
+import { NotesForm } from "./notes/NotesForm";
 
 export const ApplicationViews = () => {
   return (
@@ -29,6 +30,9 @@ export const ApplicationViews = () => {
             <NoteSearch />
             {/* <NotebookView /> */}
             <NotesList />
+          </Route>
+          <Route path="/detail/:notebookId/create">
+            <NotesForm />
           </Route>
         </NotesProvider>
       </NotebookProvider>
