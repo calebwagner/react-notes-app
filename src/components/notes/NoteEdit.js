@@ -12,7 +12,7 @@ export const NoteEdit = () => {
     title: "",
     description: "",
     notebookId: 0,
-    timestamp: Date.now(),
+    timestamp: Date.now(), //note.timestamp
   });
 
   useEffect(() => {
