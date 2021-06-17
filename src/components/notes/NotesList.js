@@ -17,21 +17,27 @@ export const NotesList = () => {
   }, []);
 
   useEffect(() => {
+    // if search bar contains a character
     if (searchTerms !== "") {
+      // filter notes by title
       const notesFiltered = notes.filter((note) =>
         note.title.toLowerCase().includes(searchTerms.toLowerCase())
       );
+      // then match notebookId to notebookId key on the note object
       const filteredByNotebook = notesFiltered.filter((note) => {
         return parseInt(notebookId) === note.notebookId;
       });
+      // then update the filteredNotes variable
       setFiltered(filteredByNotebook);
     } else {
+      // if search bar contains no characters match notebookId to notebookId key on the note object
       const filteredByNotebook = notes.filter((note) => {
         return parseInt(notebookId) === note.notebookId;
       });
+      // then update the filteredNotes variable
       setFiltered(filteredByNotebook);
     }
-  }, [searchTerms, notes]);
+  }, [searchTerms, notes]); // if variables change, re-rendered page
 
   return (
     <>

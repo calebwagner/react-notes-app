@@ -27,14 +27,14 @@ export const NotebookList = () => {
       const userNotebooks = notebookFilter.filter((notebook) => {
         return currentUserId === notebook.userId;
       });
-      // then update the filteredNotebooks variable defined in useState
+      // then update the filteredNotebooks variable
       setFiltered(userNotebooks);
     } else {
       // if search bar contains no characters match local user to userId key on the notebook object
       const userNotebooks = notebooks.filter((notebook) => {
         return currentUserId === notebook.userId;
       });
-      // then update the filteredNotebooks variable defined in useState
+      // then update the filteredNotebooks variable
       setFiltered(userNotebooks);
     }
   }, [searchTerms, notebooks]); // if variables change, re-rendered page
