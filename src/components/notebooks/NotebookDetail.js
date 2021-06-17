@@ -8,14 +8,18 @@ export const NotebookDetail = ({ notebook }) => {
   const [notebookVar, setNotebook] = useState({});
   const { notebookId } = useParams();
 
+  // useEffect(() => {
+  //   if (notebookId) {
+  //     getNotebookById(parseInt(notebookId)).then((notebookObj) => {
+  //       setNotebook(notebookObj);
+  //     });
+  //   } else {
+  //     setNotebook(notebook);
+  //   }
+  // }, [notebookId]);
+
   useEffect(() => {
-    if (notebookId) {
-      getNotebookById(parseInt(notebookId)).then((notebookObj) => {
-        setNotebook(notebookObj);
-      });
-    } else {
-      setNotebook(notebook);
-    }
+    setNotebook(notebook);
   }, [notebookId]);
 
   const history = useHistory();
@@ -28,7 +32,7 @@ export const NotebookDetail = ({ notebook }) => {
 
   return (
     <section className="notebooks">
-      <h3>{notebookVar.title}</h3>
+      <h2 className="notebook__title">{notebookVar.title}</h2>
       <Link key={notebook.id} to={`/detail/${notebook.id}`}>
         <button>View</button>
       </Link>

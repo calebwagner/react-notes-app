@@ -13,9 +13,9 @@ export const NotesProvider = (props) => {
   };
 
   const getNotesById = (noteId) => {
-    return fetch(
-      `http://localhost:8088/notes/${noteId}?_expand=notebooks`
-    ).then((res) => res.json());
+    return fetch(`http://localhost:8088/notes/${noteId}`).then((res) =>
+      res.json()
+    );
   };
 
   const addNote = (notebookObj) => {

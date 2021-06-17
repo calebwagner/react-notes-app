@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NotebookContext } from "./NotebookProvider";
 import { useHistory } from "react-router-dom";
 
@@ -15,34 +15,28 @@ export const NotebookForm = () => {
 
   const history = useHistory();
 
-  /*
-  Reach out to the world and get customers state
-  and locations state on initialization.
-  */
-  useEffect(() => {
-    getNotebooks().then();
-  }, []);
-
   const handleControlledInputChange = (event) => {
     const newNotebook = { ...notebook };
     newNotebook[event.target.id] = event.target.value;
     setNotebook(newNotebook);
   };
 
+  /*
+  Reach out to the world and get notebook state on initialization.
+  */
+  // useEffect(() => {
+  //   getNotebooks().then();
+  // }, []);
+
   const handleClickSaveNotebook = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
-    const notebookTitle = parseInt(notebook.title);
+    const notebookTitle = notebook.title;
 
     if (notebookTitle.length === 0) {
-      window.alert("Please select a type a title");
+      window.alert("Please type a title");
     } else {
-      const newNotebook = {
-        title: notebook.title,
-        userId: currentUserId,
-        timestamp: Date.now(),
-      };
-      addNotebook(newNotebook).then(() => history.push("/"));
+      addNotebook(notebook).then(() => history.push("/"));
     }
   };
 
