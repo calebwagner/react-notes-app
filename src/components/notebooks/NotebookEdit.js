@@ -3,12 +3,7 @@ import { NotebookContext } from "./NotebookProvider";
 import { useHistory, useParams } from "react-router-dom";
 
 export const NotebookEdit = () => {
-  const {
-    notebooks,
-    getNotebooks,
-    editNotebook,
-    getNotebooksById,
-  } = useContext(NotebookContext);
+  const { editNotebook, getNotebooksById } = useContext(NotebookContext);
   const { notebookId } = useParams();
 
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
@@ -35,7 +30,6 @@ export const NotebookEdit = () => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
     const newNotebook = {
-      id: parseInt(notebookId),
       title: notebook.title,
       userId: currentUserId,
       timestamp: Date.now(),
@@ -55,7 +49,6 @@ export const NotebookEdit = () => {
             required
             autoFocus
             className="form-control"
-            placeholder="type title here ..."
             defaultValue={notebook.title}
             onChange={handleControlledInputChange}
           />
