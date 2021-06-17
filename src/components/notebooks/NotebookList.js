@@ -17,21 +17,27 @@ export const NotebookList = () => {
 
   useEffect(() => {
     const currentUserId = parseInt(localStorage.getItem("wwi__user"));
+    // if search bar contains a character
     if (searchTerms !== "") {
+      // filter notebooks by title
       const notebookFilter = notebooks.filter((notebook) =>
         notebook.title.toLowerCase().includes(searchTerms.toLowerCase())
       );
+      // then match local user to userId key on the notebook object
       const userNotebooks = notebookFilter.filter((notebook) => {
         return currentUserId === notebook.userId;
       });
+      // then update the filteredNotebooks variable defined in useState
       setFiltered(userNotebooks);
     } else {
+      // if search bar contains no characters match local user to userId key on the notebook object
       const userNotebooks = notebooks.filter((notebook) => {
         return currentUserId === notebook.userId;
       });
+      // then update the filteredNotebooks variable defined in useState
       setFiltered(userNotebooks);
     }
-  }, [searchTerms, notebooks]);
+  }, [searchTerms, notebooks]); // if variables change, re-rendered page
 
   return (
     <>
