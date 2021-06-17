@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { NotebookContext } from "./NotebookProvider";
 import { useHistory } from "react-router-dom";
 
 export const NotebookForm = () => {
-  const { addNotebook, getNotebooks } = useContext(NotebookContext);
+  const { addNotebook } = useContext(NotebookContext);
 
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
 
@@ -20,13 +20,6 @@ export const NotebookForm = () => {
     newNotebook[event.target.id] = event.target.value;
     setNotebook(newNotebook);
   };
-
-  /*
-  Reach out to the world and get notebook state on initialization.
-  */
-  // useEffect(() => {
-  //   getNotebooks().then();
-  // }, []);
 
   const handleClickSaveNotebook = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
