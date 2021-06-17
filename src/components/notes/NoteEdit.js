@@ -29,12 +29,13 @@ export const NoteEdit = () => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
     const noteEdit = {
+      id: note.id,
       title: note.title,
       description: note.description,
       notebookId: parseInt(noteId),
       timestamp: Date.now(),
     };
-    editNote(noteEdit).then(() => history.push(`/detail/${noteId}`));
+    TODO: editNote(noteEdit).then(() => history.push(`/detail/${note.id}`));
   };
 
   return (

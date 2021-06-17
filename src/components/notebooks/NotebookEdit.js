@@ -30,6 +30,7 @@ export const NotebookEdit = () => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
     const newNotebook = {
+      id: notebook.id,
       title: notebook.title,
       userId: currentUserId,
       timestamp: Date.now(),

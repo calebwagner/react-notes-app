@@ -26,13 +26,16 @@ export const ApplicationViews = () => {
           <Route exact path="/edit/:notebookId">
             <NotebookEdit />
           </Route>
+
           <Route exact path="/detail/:notebookId">
             <NoteSearch />
             <NotesList />
           </Route>
+
           <Route exact path="/detail/create/:notebookId">
             <NotesForm />
           </Route>
+
           <Route exact path="/note/edit/:noteId">
             <NoteEdit />
           </Route>
