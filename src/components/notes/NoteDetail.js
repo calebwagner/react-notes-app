@@ -1,39 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { NotesContext } from "./NotesProvider";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./Notes.css";
 
 export const NoteDetail = ({ note }) => {
-  const { getNotesById, deleteNote } = useContext(NotesContext);
-  const [noteVar, setNote] = useState({});
-  const { noteId } = useParams();
-
-  // useEffect(() => {
-  //   if (noteId) {
-  //     getNotesById(parseInt(noteId)).then((noteObj) => {
-  //       setNote(noteObj);
-  //     });
-  //   } else {
-  //     setNote(note);
-  //   }
-  // }, [noteId]);
-
-  useEffect(() => {
-    setNote(note);
-  }, [noteId]);
+  const { deleteNote } = useContext(NotesContext);
 
   const history = useHistory();
 
   const deleteANote = () => {
-    deleteNote(noteVar.id).then(() => {
+    deleteNote(note.id).then(() => {
       history.push(`/detail/${note.id}`);
     });
   };
 
   return (
     <section className="notes">
-      <h3>{noteVar.title}</h3>
-      <h5>{noteVar.description}</h5>
+      <h3>{note.title}</h3>
+      <h5>{note.description}</h5>
       <button onClick={() => history.push(`/note/edit/${note.id}`)}>
         Edit Note
       </button>

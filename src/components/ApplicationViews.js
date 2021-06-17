@@ -6,8 +6,6 @@ import { NotesProvider } from "./notes/NotesProvider";
 import { NotesList } from "./notes/NotesList";
 import { NotebookForm } from "./notebooks/NotebookForm";
 import { NotebookEdit } from "./notebooks/NotebookEdit";
-import { NotebookSearch } from "./notebooks/NotebookSearch";
-import { NoteSearch } from "./notes/NoteSearch";
 import { NotesForm } from "./notes/NotesForm";
 import { NoteEdit } from "./notes/NoteEdit";
 
@@ -17,7 +15,6 @@ export const ApplicationViews = () => {
       <NotebookProvider>
         <NotesProvider>
           <Route exact path="/">
-            {/* <NotebookSearch /> */}
             <NotebookList />
           </Route>
           <Route path="/create">
@@ -28,7 +25,6 @@ export const ApplicationViews = () => {
           </Route>
 
           <Route exact path="/detail/:notebookId">
-            <NoteSearch />
             <NotesList />
           </Route>
 

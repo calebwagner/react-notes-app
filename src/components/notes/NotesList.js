@@ -5,7 +5,9 @@ import { NoteDetail } from "./NoteDetail";
 import "./Notes.css";
 
 export const NotesList = () => {
-  const { notes, getNotes, searchTerms } = useContext(NotesContext);
+  const { notes, getNotes, searchTerms, setSearchTerms } = useContext(
+    NotesContext
+  );
   const [filteredNotes, setFiltered] = useState([]);
   const history = useHistory();
   const { notebookId } = useParams();
@@ -33,7 +35,16 @@ export const NotesList = () => {
 
   return (
     <>
-      <h1>Notes:</h1>
+      <div className="notebook__create">
+        <h1>Notes:</h1>
+        <h3> Notes search:</h3>
+        <input
+          type="text"
+          className="input--wide"
+          onKeyUp={(event) => setSearchTerms(event.target.value)}
+          placeholder="Search for a note... "
+        />
+      </div>
       <button onClick={() => history.push(`/detail/create/${notebookId}`)}>
         Create Note
       </button>
