@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 export const NotebookForm = () => {
   const { addNotebook } = useContext(NotebookContext);
+  const history = useHistory();
 
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
 
@@ -13,22 +14,20 @@ export const NotebookForm = () => {
     timestamp: Date.now(),
   });
 
-  const history = useHistory();
-
+  // whatever the user types in ...
   const handleControlledInputChange = (event) => {
     const newNotebook = { ...notebook };
     newNotebook[event.target.id] = event.target.value;
+    // ... update notebook object
     setNotebook(newNotebook);
   };
 
   const handleClickSaveNotebook = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
-
-    const notebookTitle = notebook.title;
-
-    if (notebookTitle.length === 0) {
+    if (notebook.title.length === 0) {
       window.alert("Please type a title");
     } else {
+      // POST notebook to database
       addNotebook(notebook).then(() => history.push("/"));
     }
   };

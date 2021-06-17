@@ -17,7 +17,7 @@ export const NotebookList = () => {
 
   useEffect(() => {
     const currentUserId = parseInt(localStorage.getItem("wwi__user"));
-    // if search bar contains a character
+    // if searchbar contains a character
     if (searchTerms !== "") {
       // filter notebooks by title
       const notebookFilter = notebooks.filter((notebook) =>
@@ -30,7 +30,7 @@ export const NotebookList = () => {
       // then update the filteredNotebooks variable
       setFiltered(userNotebooks);
     } else {
-      // if search bar contains no characters match local user to userId key on the notebook object
+      // if searchbar contains no characters match local user to userId key on the notebook object
       const userNotebooks = notebooks.filter((notebook) => {
         return currentUserId === notebook.userId;
       });
@@ -42,10 +42,12 @@ export const NotebookList = () => {
   return (
     <>
       <div className="notebook__create">
+        {/* redirect user to create notebook page */}
         <button onClick={() => history.push("/create")}>Create Notebook</button>
         <h1 className="notebooks__header">Notebooks:</h1>
         <div className="notebook__searchbar">
           <h2>Notebook search:</h2>
+          {/* searchbar function */}
           <input
             type="text"
             className="input--wide"
@@ -55,6 +57,7 @@ export const NotebookList = () => {
         </div>
       </div>
       <div className="flex-box">
+        {/* map through filtered notebooks and display them */}
         {filteredNotebooks.map((notebook) => {
           return <NotebookDetail key={notebook.id} notebook={notebook} />;
         })}

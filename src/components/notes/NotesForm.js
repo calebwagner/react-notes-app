@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 export const NotesForm = () => {
   const { addNote } = useContext(NotesContext);
   const { notebookId } = useParams();
+  const history = useHistory();
 
   const [note, setNote] = useState({
     title: "",
@@ -13,22 +14,20 @@ export const NotesForm = () => {
     timestamp: Date.now(),
   });
 
-  const history = useHistory();
-
+  // whatever the user types in ...
   const handleControlledInputChange = (event) => {
     const newNote = { ...note };
     newNote[event.target.id] = event.target.value;
+    // ... update note object
     setNote(newNote);
   };
 
   const handleClickSaveNote = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
-
-    const noteTitle = note.title;
-    const noteDescription = note.description;
-    if (noteTitle.length === 0 || noteDescription.length === 0) {
+    if (note.title.length === 0 || note.description.length === 0) {
       window.alert("Please fill out note form");
     } else {
+      // POST note to database
       addNote(note).then(() => history.push(`/detail/${notebookId}`));
     }
   };

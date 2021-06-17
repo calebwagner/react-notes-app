@@ -17,7 +17,7 @@ export const NotesList = () => {
   }, []);
 
   useEffect(() => {
-    // if search bar contains a character
+    // if searchbar contains a character
     if (searchTerms !== "") {
       // filter notes by title
       const notesFiltered = notes.filter((note) =>
@@ -30,7 +30,7 @@ export const NotesList = () => {
       // then update the filteredNotes variable
       setFiltered(filteredByNotebook);
     } else {
-      // if search bar contains no characters match notebookId to notebookId key on the note object
+      // if searchbar contains no characters match notebookId to notebookId key on the note object
       const filteredByNotebook = notes.filter((note) => {
         return parseInt(notebookId) === note.notebookId;
       });
@@ -42,12 +42,14 @@ export const NotesList = () => {
   return (
     <>
       <div className="notebook__create">
+        {/* redirect user to create note page */}
         <button onClick={() => history.push(`/detail/create/${notebookId}`)}>
           Create Note
         </button>
         <h1>Notes:</h1>
         <div className="notebook__searchbar">
           <h2> Notes search:</h2>
+          {/* searchbar function */}
           <input
             type="text"
             className="input--wide"
@@ -57,6 +59,7 @@ export const NotesList = () => {
         </div>
       </div>
       <div className="flex-box">
+        {/* map through filtered notes and display them */}
         {filteredNotes.map((note) => {
           return <NoteDetail key={note.id} note={note} />;
         })}
