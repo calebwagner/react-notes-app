@@ -6,14 +6,14 @@ export const NoteEdit = () => {
   const { editNote, getNotesById } = useContext(NotesContext);
   const { noteId } = useParams();
 
+  const history = useHistory();
+
   const [note, setNote] = useState({
     title: "",
     description: "",
     notebookId: 0,
     timestamp: Date.now(),
   });
-
-  const history = useHistory();
 
   useEffect(() => {
     getNotesById(parseInt(noteId)).then(setNote);

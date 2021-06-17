@@ -4,7 +4,7 @@ import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./nav/NavBar";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
-// import { Footer } from "./nav/Footer";
+import { Footer } from "./nav/Footer";
 
 export const App = () => (
   <>
@@ -15,7 +15,7 @@ export const App = () => (
             <>
               <NavBar />
               <ApplicationViews />
-              {/* <Footer /> */}
+              <Footer />
             </>
           );
         } else {

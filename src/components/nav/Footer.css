@@ -1,0 +1,31 @@
+.footer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background-color: #fef5c1;
+  padding: 2rem;
+  text-decoration: none;
+  /* margin-top: 10%; */
+  /* position: fixed; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2rem;
+}
+
+.footer__item {
+  flex-basis: 20%;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.footers__link {
+  text-decoration: none;
+}
+
+.footer__link {
+  font-size: 1rem;
+  text-decoration: none;
+  list-style-type: none;
+  color: black;
+}

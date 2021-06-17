@@ -6,6 +6,8 @@ export const NotebookEdit = () => {
   const { editNotebook, getNotebooksById } = useContext(NotebookContext);
   const { notebookId } = useParams();
 
+  const history = useHistory();
+
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
 
   const [notebook, setNotebook] = useState({
@@ -14,10 +16,8 @@ export const NotebookEdit = () => {
     timestamp: Date.now(),
   });
 
-  const history = useHistory();
-
   useEffect(() => {
-    getNotebooksById(notebookId).then(setNotebook);
+    getNotebooksById(parseInt(notebookId)).then(setNotebook);
   }, []);
 
   const handleControlledInputChange = (event) => {
