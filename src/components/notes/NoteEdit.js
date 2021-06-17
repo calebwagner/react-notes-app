@@ -9,7 +9,7 @@ export const NoteEdit = () => {
   const [note, setNote] = useState({
     title: "",
     description: "",
-    notebookId: parseInt(noteId),
+    notebookId: 0,
     timestamp: Date.now(),
   });
 
@@ -28,16 +28,9 @@ export const NoteEdit = () => {
   const handleClickEditNote = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
-    const noteEdit = {
-      id: note.id,
-      title: note.title,
-      description: note.description,
-      notebookId: parseInt(noteId),
-      timestamp: Date.now(),
-    };
-    TODO: editNote(noteEdit).then(() => history.push(`/detail/${note.id}`));
+    editNote(note).then(() => history.push(`/detail/${note.notebookId}`));
   };
-
+  console.log(note);
   return (
     <form className="noteForm">
       <h2 className="noteForm__title">Edit Note</h2>
