@@ -36,19 +36,21 @@ export const NotesList = () => {
   return (
     <>
       <div className="notebook__create">
+        <button onClick={() => history.push(`/detail/create/${notebookId}`)}>
+          Create Note
+        </button>
         <h1>Notes:</h1>
-        <h3> Notes search:</h3>
-        <input
-          type="text"
-          className="input--wide"
-          onKeyUp={(event) => setSearchTerms(event.target.value)}
-          placeholder="Search for a note... "
-        />
+        <div className="notebook__searchbar">
+          <h2> Notes search:</h2>
+          <input
+            type="text"
+            className="input--wide"
+            onKeyUp={(event) => setSearchTerms(event.target.value)}
+            placeholder="Search for a note... "
+          />
+        </div>
       </div>
-      <button onClick={() => history.push(`/detail/create/${notebookId}`)}>
-        Create Note
-      </button>
-      <div>
+      <div className="flex-box">
         {filteredNotes.map((note) => {
           return <NoteDetail key={note.id} note={note} />;
         })}
