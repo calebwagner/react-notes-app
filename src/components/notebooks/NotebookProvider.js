@@ -7,10 +7,26 @@ export const NotebookProvider = (props) => {
   const [searchTerms, setSearchTerms] = useState("");
 
   const getNotebooks = () => {
-    return fetch(`http://localhost:8088/notebooks`)
+    return fetch("http://localhost:8088/notebooks?_embed=starredNotebooks")
       .then((res) => res.json())
       .then(setNotebooks);
   };
+
+  const addLike = (notebook) => {
+    return fetch(`http://localhost:8088/starredNotebooks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(notebook),
+    }).then((response) => response.json());
+  };
+
+  // const unlike = (notebookId) => {
+  //   return fetch(`http://localhost:8088/notebooks/${notebookId}`, {
+  //     method: "DELETE",
+  //   }).then(getNotebooks);
+  // };
 
   const getNotebooksById = (notebookId) => {
     return fetch(
@@ -55,6 +71,8 @@ export const NotebookProvider = (props) => {
         deleteNotebook,
         searchTerms,
         setSearchTerms,
+        addLike,
+        // unlike,
       }}
     >
       {props.children}
