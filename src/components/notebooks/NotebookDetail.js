@@ -51,22 +51,14 @@ export const NotebookDetail = ({ notebook }) => {
     });
   };
 
-  let starredNotebook = false;
-
-  // if (
-  //   likedNotebooks.filter((liked) => liked.postId === notebook.id).length !== 0
-  // ) {
-  //   starredNotebook = true;
-  // }
-
   return (
     <section className="notebooks">
       <h2 className="notebook__title">{notebook.title}</h2>
       <Link key={notebook.id} to={`/detail/${notebook.id}`}>
         <button className="view__btn">View</button>
       </Link>
-
-      {likedNotebooks.filter(
+      {/* TODO: like button feature ... */}
+      {/* {likedNotebooks.filter(
         (likedNotebook) => likedNotebook.userId === currentUserId
       ) ? (
         <button
@@ -78,7 +70,7 @@ export const NotebookDetail = ({ notebook }) => {
         </button>
       ) : (
         <button onClick={addLikedNotebook}>like</button>
-      )}
+      )} */}
 
       <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
       <button onDoubleClick={deleteANotebook}>Delete</button>

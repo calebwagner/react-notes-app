@@ -6,6 +6,10 @@ export const NotesProvider = (props) => {
   const [notes, setNotes] = useState([]);
   const [searchTerms, setSearchTerms] = useState("");
 
+  notes.sort((notebook1, notebook2) =>
+    notebook1.timestamp < notebook2.timestamp ? 1 : -1
+  );
+
   const getNotes = () => {
     return fetch(`http://localhost:8088/notes`)
       .then((res) => res.json())
