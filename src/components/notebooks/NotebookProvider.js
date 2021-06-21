@@ -7,6 +7,10 @@ export const NotebookProvider = (props) => {
   const [likedNotebooks, setLikedNotebooks] = useState([]);
   const [searchTerms, setSearchTerms] = useState("");
 
+  notebooks.sort((notebook1, notebook2) =>
+    notebook1.timestamp < notebook2.timestamp ? 1 : -1
+  );
+
   const getNotebooks = () => {
     return fetch("http://localhost:8088/notebooks?_embed=starredNotebooks")
       .then((res) => res.json())

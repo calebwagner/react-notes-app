@@ -21,9 +21,11 @@ export const NotebookList = () => {
     // if searchbar contains a character
     if (searchTerms !== "") {
       // filter notebooks by title
+
       const notebookFilter = notebooks.filter((notebook) =>
         notebook.title.toLowerCase().includes(searchTerms.toLowerCase())
       );
+
       // then match local user to userId key on the notebook object
       const userNotebooks = notebookFilter.filter((notebook) => {
         return currentUserId === notebook.userId;
@@ -32,13 +34,17 @@ export const NotebookList = () => {
       setFiltered(userNotebooks);
     } else {
       // if searchbar contains no characters match local user to userId key on the notebook object
+
       const userNotebooks = notebooks.filter((notebook) => {
         return currentUserId === notebook.userId;
       });
+
       // then update the filteredNotebooks variable
       setFiltered(userNotebooks);
     }
   }, [searchTerms, notebooks]); // if variables change, re-rendered page
+
+  // userNotebooks.sort((notebook1, notebook2) => (notebook1.timestamp < notebook2.timestamp ? 1 : -1)
 
   return (
     <>
