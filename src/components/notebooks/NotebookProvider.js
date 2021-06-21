@@ -18,7 +18,11 @@ export const NotebookProvider = (props) => {
   };
 
   const getLikes = () => {
-    return fetch("http://localhost:8088/starredNotebooks")
+    return fetch(
+      `http://localhost:8088/starredNotebooks?userId=${localStorage.getItem(
+        "wwi__user"
+      )}`
+    )
       .then((res) => res.json())
       .then(setLikedNotebooks);
   };
@@ -30,13 +34,18 @@ export const NotebookProvider = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(notebook),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .then(getLikes);
   };
 
-  const unlike = (notebook) => {
-    return fetch(`http://localhost:8088/notebooks/${notebook}`, {
-      method: "DELETE",
-    }).then(getNotebooks);
+  const unlike = (starredNotebookId) => {
+    return fetch(
+      `http://localhost:8088/starredNotebooks/${starredNotebookId}`,
+      {
+        method: "DELETE",
+      }
+    ).then(getLikes);
   };
 
   const getNotebooksById = (notebookId) => {

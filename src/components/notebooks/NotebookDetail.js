@@ -8,14 +8,17 @@ export const NotebookDetail = ({ notebook }) => {
   const {
     deleteNotebook,
     addLike,
-    getNotebooks,
     unlike,
     getLikes,
     likedNotebooks,
   } = useContext(NotebookContext);
+
   const [isToggled, setIsToggled] = useState(false);
 
+  const [isLiked, setIsLiked] = useState();
+
   const history = useHistory();
+
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
 
   const deleteANotebook = () => {
@@ -25,18 +28,18 @@ export const NotebookDetail = ({ notebook }) => {
   };
 
   useEffect(() => {
-    getNotebooks();
+    getLikes().then(() => {
+      const foundLike = likedNotebooks.find((liked) => {
+        return notebook.id === liked.notebookId;
+      });
+      console.log(foundLike);
+      if (foundLike) {
+        setIsLiked(true);
+      } else {
+        setIsLiked(false);
+      }
+    });
   }, []);
-
-  useEffect(() => {
-    getLikes();
-  }, []);
-
-  // useEffect(() => {
-  //   getLikes().then((data) => {
-  //     setLikedNotebooks(data);
-  //   });
-  // }, []);
 
   const addLikedNotebook = () => {
     addLike({
@@ -57,10 +60,7 @@ export const NotebookDetail = ({ notebook }) => {
       <Link key={notebook.id} to={`/detail/${notebook.id}`}>
         <button className="view__btn">View</button>
       </Link>
-      {/* TODO: like button feature ... */}
-      {/* {likedNotebooks.filter(
-        (likedNotebook) => likedNotebook.userId === currentUserId
-      ) ? (
+      {isLiked ? (
         <button
           onClick={() => {
             unlikeNotebook(likedNotebooks.id);
@@ -70,7 +70,7 @@ export const NotebookDetail = ({ notebook }) => {
         </button>
       ) : (
         <button onClick={addLikedNotebook}>like</button>
-      )} */}
+      )}
 
       <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
       <button onDoubleClick={deleteANotebook}>Delete</button>
@@ -85,30 +85,3 @@ export const NotebookDetail = ({ notebook }) => {
     </section>
   );
 };
-
-// {likedNotebooks.filter((likedNotebook) => likedNotebook.notebookId)
-//   .length === 0 ? (
-//   <button onClick={addLikedNotebook}>like</button>
-// ) : (
-//   <button
-//     onClick={() => {
-//       unlikeNotebook(likedNotebooks.id);
-//     }}
-//   >
-//     unlike
-//   </button>
-// )}
-
-// {likedNotebooks.filter(
-//   (likedNotebook) => likedNotebook.notebookId === currentUserId
-// ) ? (
-//   <button onClick={addLikedNotebook}>like</button>
-// ) : (
-//   <button
-//     onClick={() => {
-//       unlikeNotebook(likedNotebooks.id);
-//     }}
-//   >
-//     unlike
-//   </button>
-// )}
