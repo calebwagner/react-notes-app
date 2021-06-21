@@ -7,12 +7,13 @@ import { Toggle } from "./NotebookToggle";
 export const NotebookDetail = ({ notebook }) => {
   const {
     deleteNotebook,
-    notebookLikes,
     addLike,
     getNotebooks,
-    notebooks,
     unlike,
+    getLikes,
+    likedNotebooks,
   } = useContext(NotebookContext);
+  const [isToggled, setIsToggled] = useState(false);
 
   const history = useHistory();
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));
@@ -23,40 +24,99 @@ export const NotebookDetail = ({ notebook }) => {
     });
   };
 
-  // const starNotebook = () => {
-  //   addLike(notebook.id).then(() => {
-  //     history.push("/");
+  useEffect(() => {
+    getNotebooks();
+  }, []);
+
+  useEffect(() => {
+    getLikes();
+  }, []);
+
+  // useEffect(() => {
+  //   getLikes().then((data) => {
+  //     setLikedNotebooks(data);
   //   });
-  // };
+  // }, []);
 
-  // addLike({
-  //   userId: parseInt(localStorage.getItem("wwi__user")),
-  //   notebookId: notebook.id,
-  // });
+  const addLikedNotebook = () => {
+    addLike({
+      userId: currentUserId,
+      notebookId: notebook.id,
+    });
+  };
 
-  // const likeNotebook = {
-  //   userId: parseInt(localStorage.getItem("wwi__user")),
-  //   notebookId: notebook.id,
-  // };
+  const unlikeNotebook = () => {
+    unlike(likedNotebooks.id).then(() => {
+      history.push("/");
+    });
+  };
 
-  // addLike(likeNotebook).then(() => history.push("/"));
+  let starredNotebook = false;
 
-  const [isToggled, setIsToggled] = useState(false);
+  // if (
+  //   likedNotebooks.filter((liked) => liked.postId === notebook.id).length !== 0
+  // ) {
+  //   starredNotebook = true;
+  // }
 
   return (
     <section className="notebooks">
       <h2 className="notebook__title">{notebook.title}</h2>
       <Link key={notebook.id} to={`/detail/${notebook.id}`}>
-        <button>View</button>
+        <button className="view__btn">View</button>
       </Link>
+
+      {likedNotebooks.filter(
+        (likedNotebook) => likedNotebook.userId === currentUserId
+      ) ? (
+        <button
+          onClick={() => {
+            unlikeNotebook(likedNotebooks.id);
+          }}
+        >
+          unlike
+        </button>
+      ) : (
+        <button onClick={addLikedNotebook}>like</button>
+      )}
+
       <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
       <button onDoubleClick={deleteANotebook}>Delete</button>
+      {/* <button onDoubleClick={addLikedNotebook}>Liked</button>
+      <button onDoubleClick={unlikeNotebook}>Unlike</button> */}
+
       <Toggle
         rounded={true}
         isToggled={isToggled}
         onToggle={() => setIsToggled(!isToggled)}
-        onClick={addLike}
       />
     </section>
   );
 };
+
+// {likedNotebooks.filter((likedNotebook) => likedNotebook.notebookId)
+//   .length === 0 ? (
+//   <button onClick={addLikedNotebook}>like</button>
+// ) : (
+//   <button
+//     onClick={() => {
+//       unlikeNotebook(likedNotebooks.id);
+//     }}
+//   >
+//     unlike
+//   </button>
+// )}
+
+// {likedNotebooks.filter(
+//   (likedNotebook) => likedNotebook.notebookId === currentUserId
+// ) ? (
+//   <button onClick={addLikedNotebook}>like</button>
+// ) : (
+//   <button
+//     onClick={() => {
+//       unlikeNotebook(likedNotebooks.id);
+//     }}
+//   >
+//     unlike
+//   </button>
+// )}

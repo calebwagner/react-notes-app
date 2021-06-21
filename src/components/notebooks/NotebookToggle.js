@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import "./Toggle.css";
 import cx from "classnames";
 

@@ -4,12 +4,19 @@ export const NotebookContext = createContext();
 
 export const NotebookProvider = (props) => {
   const [notebooks, setNotebooks] = useState([]);
+  const [likedNotebooks, setLikedNotebooks] = useState([]);
   const [searchTerms, setSearchTerms] = useState("");
 
   const getNotebooks = () => {
     return fetch("http://localhost:8088/notebooks?_embed=starredNotebooks")
       .then((res) => res.json())
       .then(setNotebooks);
+  };
+
+  const getLikes = () => {
+    return fetch("http://localhost:8088/starredNotebooks")
+      .then((res) => res.json())
+      .then(setLikedNotebooks);
   };
 
   const addLike = (notebook) => {
@@ -22,11 +29,11 @@ export const NotebookProvider = (props) => {
     }).then((response) => response.json());
   };
 
-  // const unlike = (notebookId) => {
-  //   return fetch(`http://localhost:8088/notebooks/${notebookId}`, {
-  //     method: "DELETE",
-  //   }).then(getNotebooks);
-  // };
+  const unlike = (notebook) => {
+    return fetch(`http://localhost:8088/notebooks/${notebook}`, {
+      method: "DELETE",
+    }).then(getNotebooks);
+  };
 
   const getNotebooksById = (notebookId) => {
     return fetch(
@@ -72,7 +79,9 @@ export const NotebookProvider = (props) => {
         searchTerms,
         setSearchTerms,
         addLike,
-        // unlike,
+        unlike,
+        getLikes,
+        likedNotebooks,
       }}
     >
       {props.children}

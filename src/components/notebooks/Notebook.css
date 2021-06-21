@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap");
+
 .notebooks {
-  height: 320px;
-  width: 180px;
+  height: 350px;
+  width: 200px;
   border-radius: 20px;
   padding-left: 40px;
   padding-right: 40px;
@@ -18,6 +20,8 @@
   flex-wrap: wrap;
   /* justify-content: space-around; */
   align-items: center;
+  font-family: "Source Sans Pro", sans-serif;
+  overflow: scroll;
 }
 
 .flex-box {
@@ -25,6 +29,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: 2rem;
+  /* overflow: scroll; */
 }
 
 .notebooks:hover {
@@ -36,6 +41,7 @@
 .notebooks:focus,
 .notebooks:active {
   transform: scale(1.1);
+  background-color: #fef5c1;
 }
 
 /* .notebook__list {
@@ -72,15 +78,18 @@ button {
   border-radius: 10px;
   /* box-shadow: 10px 20px 10px #f3bfbf; */
   cursor: pointer;
-  font: inherit;
+  /* font: inherit; */
   padding: 12px 20px;
   transition: all 0.1s linear;
   width: 10rem;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   margin-top: 1rem;
   text-decoration: none;
   align-items: center;
+  font-size: larger;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: large;
 }
 
 button:hover {
@@ -125,4 +134,63 @@ Link {
 
 .notebooks__header {
   font-size: 4rem;
+}
+
+.add__notebook__card {
+  height: 350px;
+  width: 200px;
+  border-radius: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  display: flex;
+  font-size: 15px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: #fffbe7;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.add__card {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #fffbe7;
+  margin-top: 10px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+/* .icon:hover {
+  transform: translateY(5px);
+} */
+
+.icon:hover,
+.icon:focus,
+.icon:active {
+  transform: scale(1.2);
+}
+
+.add__notebook__card:hover,
+.add__notebook__card:focus,
+.add__notebook__card:active {
+  transform: scale(1.1);
+  background-color: #fef5c1;
+}
+
+.icon__div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
 }
