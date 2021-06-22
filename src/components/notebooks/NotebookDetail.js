@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NotebookContext } from "./NotebookProvider";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, useParams } from "react-router-dom";
 import "./Notebook.css";
 import { Toggle } from "./NotebookToggle";
 
@@ -39,17 +39,23 @@ export const NotebookDetail = ({ notebook }) => {
         setIsLiked(false);
       }
     });
-  }, []);
+  }, [isLiked]);
 
   const addLikedNotebook = () => {
     addLike({
       userId: currentUserId,
       notebookId: notebook.id,
+    }).then(() => {
+      history.push("/");
     });
   };
 
+  const foundLike = likedNotebooks.find((liked) => {
+    return notebook.id === liked.notebookId;
+  });
+
   const unlikeNotebook = () => {
-    unlike(likedNotebooks.id).then(() => {
+    unlike(foundLike.id).then(() => {
       history.push("/");
     });
   };
@@ -61,27 +67,19 @@ export const NotebookDetail = ({ notebook }) => {
         <button className="view__btn">View</button>
       </Link>
       {isLiked ? (
-        <button
-          onClick={() => {
-            unlikeNotebook(likedNotebooks.id);
-          }}
-        >
-          unlike
-        </button>
+        <button onClick={unlikeNotebook}>unlike</button>
       ) : (
         <button onClick={addLikedNotebook}>like</button>
       )}
 
       <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
       <button onDoubleClick={deleteANotebook}>Delete</button>
-      {/* <button onDoubleClick={addLikedNotebook}>Liked</button>
-      <button onDoubleClick={unlikeNotebook}>Unlike</button> */}
 
-      <Toggle
+      {/* <Toggle
         rounded={true}
         isToggled={isToggled}
         onToggle={() => setIsToggled(!isToggled)}
-      />
+      /> */}
     </section>
   );
 };
