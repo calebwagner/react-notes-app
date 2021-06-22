@@ -61,6 +61,9 @@ export const NotesForm = () => {
         value={note.description}
         onChange={handleControlledInputChange}
       />
+      <div className="note-footer">
+        <small>{note.description.length} Characters</small>
+      </div>
       ;
       <button className="btn btn-primary" onClick={handleClickSaveNote}>
         Save Note

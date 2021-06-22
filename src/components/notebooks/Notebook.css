@@ -194,3 +194,11 @@ Link {
   align-items: center;
   justify-self: center;
 }
+
+.yellow {
+  background-color: yellow;
+}
+
+.red {
+  background-color: red;
+}

@@ -60,6 +60,10 @@ export const NoteEdit = () => {
         onChange={handleControlledInputChange}
       />
 
+      <div className="note-footer">
+        <small>{note.description.length} Characters</small>
+      </div>
+
       <button className="btn btn-primary" onClick={handleClickEditNote}>
         Save
       </button>
