@@ -62,24 +62,34 @@ export const NotebookDetail = ({ notebook }) => {
 
   return (
     <section className="notebooks">
-      <h2 className="notebook__title">{notebook.title}</h2>
-      <Link key={notebook.id} to={`/detail/${notebook.id}`}>
-        <button className="view__btn">View</button>
-      </Link>
-      {isLiked ? (
-        <button onClick={unlikeNotebook}>unlike</button>
-      ) : (
-        <button onClick={addLikedNotebook}>like</button>
-      )}
+      <div className="like-btn">
+        <div className="unlike-btn">
+          <h2 className="notebook__title">{notebook.title}</h2>
+          <Link key={notebook.id} to={`/detail/${notebook.id}`}>
+            <button className="view__btn">View</button>
+          </Link>
+          {isLiked ? (
+            <button className="unlike-btn" onClick={unlikeNotebook}>
+              unlike
+            </button>
+          ) : (
+            <button className="like-btn" onClick={addLikedNotebook}>
+              like
+            </button>
+          )}
 
-      <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
-      <button onDoubleClick={deleteANotebook}>Delete</button>
+          <button onClick={() => history.push(`/edit/${notebook.id}`)}>
+            Edit
+          </button>
+          <button onDoubleClick={deleteANotebook}>Delete</button>
 
-      {/* <Toggle
+          {/* <Toggle
         rounded={true}
         isToggled={isToggled}
         onToggle={() => setIsToggled(!isToggled)}
       /> */}
+        </div>
+      </div>
     </section>
   );
 };
