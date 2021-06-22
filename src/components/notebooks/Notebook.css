@@ -69,6 +69,25 @@
 
 .notebookForm {
   background-color: #fffbe7;
+  height: 350px;
+  width: 200px;
+  border-radius: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  font-family: sans-serif;
+  display: flex;
+  font-size: 15px;
+  border: 1px solid black;
+  text-align: center;
+  margin-top: 5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: "Source Sans Pro", sans-serif;
+  overflow: scroll;
+  align-items: center;
+  justify-content: center;
+  margin-left: 45rem;
 }
 
 button {
@@ -133,7 +152,7 @@ Link {
 }
 
 .notebooks__header {
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .add__notebook__card {
@@ -160,8 +179,14 @@ Link {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #fffbe7;
   margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2.5rem;
+}
+
+.create {
+  padding-left: 2.5rem;
 }
 
 .icon {
@@ -201,4 +226,13 @@ Link {
 
 .red {
   background-color: red;
+}
+
+.search {
+  flex-basis: 40%;
+  padding: 1rem;
+}
+
+.input--wide {
+  width: 100%;
 }
