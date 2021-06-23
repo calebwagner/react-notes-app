@@ -7,7 +7,6 @@
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 20px;
-
   font-family: sans-serif;
   display: flex;
   /* flex-direction: row; */
@@ -30,6 +29,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: 2rem;
+  padding: 2rem;
   /* overflow: scroll; */
 }
 
@@ -239,6 +239,7 @@ Link {
 }
 
 .unlike-btn {
-  background-color: gold;
+  background-color: #f7dc6f;
   color: black;
+  font-weight: bold;
 }
