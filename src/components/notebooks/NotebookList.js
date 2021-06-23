@@ -4,6 +4,9 @@ import { useHistory } from "react-router-dom";
 import "./Notebook.css";
 import { NotebookDetail } from "./NotebookDetail";
 import { BsFillPlusSquareFill } from "react-icons/bs";
+import { TextField } from "@material-ui/core";
+import { Footer } from ".././nav/Footer";
+import { NavBar } from ".././nav/NavBar";
 
 export const NotebookList = () => {
   const { notebooks, getNotebooks, searchTerms, setSearchTerms } = useContext(
@@ -48,28 +51,26 @@ export const NotebookList = () => {
 
   return (
     <>
+      <NavBar />
       <div className="notebook__create">
         {/* redirect user to create notebook page */}
         {/* <button onClick={() => history.push("/create")}>Create Notebook</button> */}
         <h1 className="notebooks__header">Notebooks:</h1>
-        <div className="notebook__searchbar">
-          <h2>Notebook search:</h2>
-          {/* searchbar function */}
-          <input
-            type="text"
+        <div className="search">
+          <TextField
+            id="outlined-search"
+            label="Search field"
+            type="search"
+            variant="filled"
             className="input--wide"
             onKeyUp={(event) => setSearchTerms(event.target.value)}
-            placeholder="Search for a notebook... "
           />
         </div>
       </div>
       <div className="flex-box">
         <div className="add__notebook__card">
-          {/* <button onClick={() => history.push("/create")}>
-            Create Notebook
-          </button> */}
           <div className="icon__div">
-            <h2>Create</h2>
+            <h2 className="create">Create</h2>
             <div className="icon">
               <BsFillPlusSquareFill
                 style={{ color: ` #da3e3e`, cursor: `pointer` }}
@@ -84,6 +85,7 @@ export const NotebookList = () => {
           return <NotebookDetail key={notebook.id} notebook={notebook} />;
         })}
       </div>
+      <Footer />
     </>
   );
 };

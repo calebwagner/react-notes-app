@@ -13,9 +13,9 @@ export const App = () => (
         if (localStorage.getItem("wwi__user")) {
           return (
             <>
-              <NavBar />
+              {/* <NavBar /> */}
               <ApplicationViews />
-              <Footer />
+              {/* <Footer /> */}
             </>
           );
         } else {

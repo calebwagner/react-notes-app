@@ -51,12 +51,6 @@ export const NotebookForm = () => {
         </div>
       </fieldset>
 
-      {/* <select>
-        <option value="">-- Select Color --</option>
-        <option className="yellow">yellow</option>
-        <option className="red">red</option>
-      </select> */}
-
       <button className="btn btn-primary" onClick={handleClickSaveNotebook}>
         Add Notebook
       </button>

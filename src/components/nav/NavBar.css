@@ -4,11 +4,12 @@
   justify-content: left;
   background-color: #fef5c1;
   padding: 2.5rem;
-  width: 97%;
   text-decoration: none;
   list-style-type: none;
   justify-content: space-between;
   color: black;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
 }
 
 .navbar__item {
@@ -24,16 +25,3 @@
   list-style-type: none;
   color: black;
 }
-
-.d-block {
-  height: 30rem;
-}
-
-/* .title {
-  background-color: #f0483e;
-  font-weight: bolder;
-  border-radius: 20px;
-  color: white;
-  width: 300px;
-  font-size: 30px;
-} */

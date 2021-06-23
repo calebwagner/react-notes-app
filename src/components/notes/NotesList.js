@@ -3,6 +3,8 @@ import { NotesContext } from "./NotesProvider";
 import { useHistory, useParams } from "react-router-dom";
 import { NoteDetail } from "./NoteDetail";
 import "./Notes.css";
+import { TiArrowBack } from "react-icons/ti";
+import { TextField } from "@material-ui/core";
 
 export const NotesList = () => {
   const { notes, getNotes, searchTerms, setSearchTerms } = useContext(
@@ -41,23 +43,32 @@ export const NotesList = () => {
 
   return (
     <>
-      <div className="notebook__create">
+      <div className="note__create">
         {/* redirect user to create note page */}
-        <button onClick={() => history.push(`/detail/create/${notebookId}`)}>
-          Create Note
-        </button>
+        <TiArrowBack
+          className="back__btn btn btn-white btn-animate"
+          onClick={() => history.push("/")}
+        />
         <h1>Notes:</h1>
-        <div className="notebook__searchbar">
-          <h2> Notes search:</h2>
-          {/* searchbar function */}
-          <input
-            type="text"
-            className="input--wide"
-            onKeyUp={(event) => setSearchTerms(event.target.value)}
-            placeholder="Search for a note... "
-          />
+        <div className="note__searchbar">
+          <div className="search">
+            <TextField
+              id="outlined-search"
+              label="Search field"
+              type="search"
+              variant="filled"
+              className="input--wide"
+              onKeyUp={(event) => setSearchTerms(event.target.value)}
+            />
+          </div>
         </div>
       </div>
+      <button
+        className="create__note__btn"
+        onClick={() => history.push(`/detail/create/${notebookId}`)}
+      >
+        Create Note
+      </button>
       <div className="flex-box">
         {/* map through filtered notes and display them */}
         {filteredNotes.map((note) => {

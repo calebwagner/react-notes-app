@@ -50,19 +50,23 @@ export const NotesForm = () => {
           />
         </div>
       </fieldset>
-      <textarea
-        type="text"
-        id="description"
-        name="description"
-        className="form-control"
-        cols={10}
-        rows={10}
-        required
-        value={note.description}
-        onChange={handleControlledInputChange}
-      />
-      <div className="note-footer">
-        <small>{note.description.length} Characters</small>
+      <div className="form-group">
+        <label htmlFor="title">Description:</label>
+        <textarea
+          type="text"
+          id="description"
+          name="description"
+          className="form-control"
+          cols={10}
+          rows={10}
+          required
+          value={note.description}
+          onChange={handleControlledInputChange}
+        />
+
+        <div className="note-footer">
+          <small>{note.description.length} Characters</small>
+        </div>
       </div>
       ;
       <button className="btn btn-primary" onClick={handleClickSaveNote}>
