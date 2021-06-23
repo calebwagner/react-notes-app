@@ -5,6 +5,8 @@ import "./Notebook.css";
 import { NotebookDetail } from "./NotebookDetail";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import { TextField } from "@material-ui/core";
+import { Footer } from ".././nav/Footer";
+import { NavBar } from ".././nav/NavBar";
 
 export const NotebookList = () => {
   const { notebooks, getNotebooks, searchTerms, setSearchTerms } = useContext(
@@ -49,6 +51,7 @@ export const NotebookList = () => {
 
   return (
     <>
+      <NavBar />
       <div className="notebook__create">
         {/* redirect user to create notebook page */}
         {/* <button onClick={() => history.push("/create")}>Create Notebook</button> */}
@@ -82,6 +85,7 @@ export const NotebookList = () => {
           return <NotebookDetail key={notebook.id} notebook={notebook} />;
         })}
       </div>
+      <Footer />
     </>
   );
 };
