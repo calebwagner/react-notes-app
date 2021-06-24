@@ -45,7 +45,6 @@ cd react-notes-app
 #### Demo User Credentials
 
 <p>
-Username: <i>demo</i>
+email: <i>demo@demo.com</i>
 <br>
-Password: <i>demo</i>
-</p>
+
