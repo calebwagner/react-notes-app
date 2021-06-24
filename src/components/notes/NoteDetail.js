@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { NotesContext } from "./NotesProvider";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "./Notes.css";
 
 export const NoteDetail = ({ note }) => {
   const { deleteNote } = useContext(NotesContext);
+  const { noteId } = useParams();
 
   const history = useHistory();
 

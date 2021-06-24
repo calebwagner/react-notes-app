@@ -40,8 +40,8 @@ export const NotebookDetail = ({ notebook }) => {
     });
   };
 
-  const deleteANotebook = () => {
-    deleteNotebook(notebook.id).then(() => {
+  const deleteANotebook = (notebookId) => {
+    deleteNotebook(notebookId).then(() => {
       history.push("/");
     });
   };
@@ -71,11 +71,15 @@ export const NotebookDetail = ({ notebook }) => {
           important?
         </button>
       )}
-      {/* <button className="like-btn" onClick={() => history.push("/success")}>
-        Success!
-      </button> */}
+
       <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
-      <button onDoubleClick={deleteANotebook}>Delete</button>
+      <button
+        onClick={() => {
+          deleteANotebook(notebook.id);
+        }}
+      >
+        Delete
+      </button>
     </section>
   );
 };
