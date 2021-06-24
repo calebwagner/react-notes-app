@@ -10,8 +10,11 @@ export const NotesList = () => {
   const { notes, getNotes, searchTerms, setSearchTerms } = useContext(
     NotesContext
   );
+
   const [filteredNotes, setFiltered] = useState([]);
+
   const history = useHistory();
+
   const { notebookId } = useParams();
 
   useEffect(() => {

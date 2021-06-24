@@ -8,11 +8,15 @@ import { NotebookForm } from "./notebooks/NotebookForm";
 import { NotebookEdit } from "./notebooks/NotebookEdit";
 import { NotesForm } from "./notes/NotesForm";
 import { NoteEdit } from "./notes/NoteEdit";
+import { StarredNotebooks } from "./notebooks/StarredNotebooks";
 
 export const ApplicationViews = () => {
   return (
     <>
       <NotebookProvider>
+        <Route exact path="/success">
+          <StarredNotebooks />
+        </Route>
         <NotesProvider>
           {/* Render ** NotebookList ** when http://localhost:3000 */}
           <Route exact path="/">
