@@ -33,7 +33,7 @@ cd react-notes-app
 ```
 2. Access the data.
 
-<a href="#" alt="Where Was I App"></a>
+<a href="https://github.com/calebwagner/react-notes-app-api" alt="Where Was I App"></a>
 
 3. Launch the client.
 
