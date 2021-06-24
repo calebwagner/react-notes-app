@@ -4,7 +4,9 @@ import { useHistory, useParams } from "react-router-dom";
 
 export const NotesForm = () => {
   const { addNote } = useContext(NotesContext);
+
   const { notebookId } = useParams();
+
   const history = useHistory();
 
   const [note, setNote] = useState({

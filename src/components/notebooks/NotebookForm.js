@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 export const NotebookForm = () => {
   const { addNotebook } = useContext(NotebookContext);
+
   const history = useHistory();
 
   const currentUserId = parseInt(localStorage.getItem("wwi__user"));

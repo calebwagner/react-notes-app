@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 export const NotebookEdit = () => {
   const { editNotebook, getNotebooksById } = useContext(NotebookContext);
+
   const { notebookId } = useParams();
 
   const history = useHistory();
@@ -28,7 +29,6 @@ export const NotebookEdit = () => {
 
   const handleClickEditNotebook = (event) => {
     event.preventDefault(); //Prevents the browser from submitting the form
-
     const newNotebook = {
       id: notebook.id,
       title: notebook.title,

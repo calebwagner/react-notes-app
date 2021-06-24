@@ -7,12 +7,15 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import { TextField } from "@material-ui/core";
 import { Footer } from ".././nav/Footer";
 import { NavBar } from ".././nav/NavBar";
+import { StarredNotebooks } from "./StarredNotebooks";
 
 export const NotebookList = () => {
   const { notebooks, getNotebooks, searchTerms, setSearchTerms } = useContext(
     NotebookContext
   );
+
   const [filteredNotebooks, setFiltered] = useState([]);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -24,11 +27,9 @@ export const NotebookList = () => {
     // if searchbar contains a character
     if (searchTerms !== "") {
       // filter notebooks by title
-
       const notebookFilter = notebooks.filter((notebook) =>
         notebook.title.toLowerCase().includes(searchTerms.toLowerCase())
       );
-
       // then match local user to userId key on the notebook object
       const userNotebooks = notebookFilter.filter((notebook) => {
         return currentUserId === notebook.userId;
@@ -37,24 +38,18 @@ export const NotebookList = () => {
       setFiltered(userNotebooks);
     } else {
       // if searchbar contains no characters match local user to userId key on the notebook object
-
       const userNotebooks = notebooks.filter((notebook) => {
         return currentUserId === notebook.userId;
       });
-
       // then update the filteredNotebooks variable
       setFiltered(userNotebooks);
     }
   }, [searchTerms, notebooks]); // if variables change, re-rendered page
 
-  // userNotebooks.sort((notebook1, notebook2) => (notebook1.timestamp < notebook2.timestamp ? 1 : -1)
-
   return (
     <>
       <NavBar />
       <div className="notebook__create">
-        {/* redirect user to create notebook page */}
-        {/* <button onClick={() => history.push("/create")}>Create Notebook</button> */}
         <h1 className="notebooks__header">Notebooks:</h1>
         <div className="search">
           <TextField
@@ -67,6 +62,7 @@ export const NotebookList = () => {
           />
         </div>
       </div>
+      <StarredNotebooks />
       <div className="flex-box">
         <div className="add__notebook__card">
           <div className="icon__div">
@@ -85,6 +81,7 @@ export const NotebookList = () => {
           return <NotebookDetail key={notebook.id} notebook={notebook} />;
         })}
       </div>
+
       <Footer />
     </>
   );

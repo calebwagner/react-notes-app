@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 export const NoteEdit = () => {
   const { editNote, getNotesById } = useContext(NotesContext);
+
   const { noteId } = useParams();
 
   const history = useHistory();
@@ -12,7 +13,7 @@ export const NoteEdit = () => {
     title: "",
     description: "",
     notebookId: 0,
-    timestamp: Date.now(), //note.timestamp
+    timestamp: Date.now(),
   });
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const NoteEdit = () => {
 
     editNote(note).then(() => history.push(`/detail/${note.notebookId}`));
   };
-  console.log(note);
+
   return (
     <form className="noteForm">
       <h2 className="noteForm__title">Edit Note</h2>
