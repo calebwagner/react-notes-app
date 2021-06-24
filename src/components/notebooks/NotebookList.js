@@ -7,7 +7,6 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import { TextField } from "@material-ui/core";
 import { Footer } from ".././nav/Footer";
 import { NavBar } from ".././nav/NavBar";
-import { StarredNotebooks } from "./StarredNotebooks";
 
 export const NotebookList = () => {
   const { notebooks, getNotebooks, searchTerms, setSearchTerms } = useContext(
@@ -62,7 +61,6 @@ export const NotebookList = () => {
           />
         </div>
       </div>
-      <StarredNotebooks />
       <div className="flex-box">
         <div className="add__notebook__card">
           <div className="icon__div">
