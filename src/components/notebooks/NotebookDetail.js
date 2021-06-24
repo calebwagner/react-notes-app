@@ -40,11 +40,11 @@ export const NotebookDetail = ({ notebook }) => {
     });
   };
 
-  // const deleteANotebook = (notebookId) => {
-  //   deleteNotebook(notebookId).then(() => {
-  //     history.push("/");
-  //   });
-  // };
+  const deleteANotebook = (notebookId) => {
+    deleteNotebook(notebookId).then(() => {
+      history.push("/");
+    });
+  };
 
   const foundLike = likedNotebooks.find((liked) => {
     return notebook.id === liked.notebookId;
@@ -73,13 +73,13 @@ export const NotebookDetail = ({ notebook }) => {
       )}
 
       <button onClick={() => history.push(`/edit/${notebook.id}`)}>Edit</button>
-      {/* <button
+      <button
         onClick={() => {
           deleteANotebook(notebook.id);
         }}
       >
         Delete
-      </button> */}
+      </button>
     </section>
   );
 };
